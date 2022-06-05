@@ -28,7 +28,8 @@
   <div class="listscreen" style="height: 100%; display: flex">
     <div style="width: 70%;height: 100vh;" id="videodisplay">
       <!--div id="ytplayer" width="100%" height="100%"></div-->
-      <YouTube src="https://www.youtube.com/watch?v=jNQXAC9IVRw" @ready="onReady" @state-change="onSc" ref="youtube" width="100%" height="100%"/>
+      <YouTube src="https://www.youtube.com/watch?v=jNQXAC9IVRw" @ready="onReady" @state-change="onSc" ref="youtube"
+        width="100%" height="100%" />
     </div>
     <div style="width: 30%" id="playlist">
       <table class="table table-secondary">
@@ -123,6 +124,8 @@ a,
 import { defineComponent } from 'vue'
 import YouTube from 'vue3-youtube'
 import anime from 'animejs'
+import { useToast } from "vue-toastification";
+const toast = useToast()
 
 let player
 
@@ -191,15 +194,16 @@ function PlayerReady() {
       }
       if (!playlist.length) {
         stopnext = setInterval(getnext, 5000)
+        toast.warning("กรุณาเพิ่มเพลงเข้าลิสต์");
       } else {
         setTimeout(function () {
           player.loadVideoById(playlist[0].pl_ytid)
-          fetch("ctp.php", {
-            method: "POST",
-            body: { plid: playlist[0].pl_id }
-          })
+          var urlencoded = new URLSearchParams();
+          urlencoded.append("plid", playlist[0].pl_id);
+          fetch("http://localhost/mkrm/ctp.php", { method: "POST", body: urlencoded })
             .then((r) => r.json())
             .then((json) => { });
+          toast.success("เจอเพลงแล้ว | กำลังเริ่มเล่นเพลง");
           setTimeout(function () {
             document.getElementById("playlist").style.display = "none";
             document.getElementById("videodisplay").style.width = "100%";
@@ -213,56 +217,6 @@ function PlayerReady() {
       }
     });
 }
-
-/*function onYouTubePlayerAPIReady() {
-  player = new YT.Player("ytplayer", {
-    height: "100%",
-    width: "100%",
-    videoId: "APzqxJdnKfI",
-    playerVars: { autoplay: 1, controls: 0 },
-    events: {
-      onReady: onPlayerReady,
-    }
-  });
-
-  player.addEventListener("onStateChange", "bigtest");
-
-  fetch("gpl.php")
-    .then((r) => r.json())
-    .then((json) => {
-      playlist = json;
-      //loop playlist
-      for (i = 0; i < playlist.length; i++) {
-        document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
-      }
-      if (!playlist.length) {
-        stopnext = setInterval(getnext, 5000)
-      } else {
-        setTimeout(function () {
-          player.loadVideoById(playlist[0].pl_ytid)
-          fetch("ctp.php", {
-            method: "POST",
-            body: { plid: playlist[0].pl_id }
-          })
-            .then((r) => r.json())
-            .then((json) => { });
-          setTimeout(function () {
-            document.getElementById("playlist").style.display = "none";
-            document.getElementById("videodisplay").style.width = "100%";
-          }, 10000);
-          playlist.shift()
-          clearInterval(stopnext);
-          for (i = 0; i < playlist.length; i++) {
-            document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
-          }
-        }, 5000)
-      }
-    });
-}
-
-function onPlayerReady(event) {
-  event.target.setVolume(50);
-}*/
 
 setInterval(showdiflist, 3000);
 
@@ -310,6 +264,7 @@ function showdiflist() {
 }
 
 function getnext() {
+  toast.warning("กรุณาเพิ่มเพลงเข้าลิสต์");
   fetch("http://localhost/mkrm/gpl.php")
     .then((r) => r.json())
     .then((json) => {
@@ -328,10 +283,13 @@ function getnext() {
         for (i = 0; i < playlist.length; i++) {
           document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
         }
-        fetch("ctp.php", { method: "POST", body: { plid: playlist[0].pl_id } })
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("plid", playlist[0].pl_id);
+        fetch("http://localhost/mkrm/ctp.php", { method: "POST", body: urlencoded })
           .then((r) => r.json())
           .then((json) => { });
         player.loadVideoById(playlist[0].pl_ytid);
+        toast.success("เจอเพลงแล้ว | กำลังเล่นเพลง");
         setTimeout(function () {
           document.getElementById('playlist').style.display = "none";
           document.getElementById('videodisplay').style.width = "100%";
@@ -364,11 +322,14 @@ function bigtest(event) {
       easing: "easeInOutSine",
     });
     player.loadVideoById(playlist[0].pl_ytid);
+    toast.success("กำลังเล่นเพลง "+playlist[0].pl_ytname);
     setTimeout(function () {
       document.getElementById("playlist").style.display = "none";
       document.getElementById("videodisplay").style.width = "100%";
     }, 20000);
-    fetch("ctp.php", { method: "POST", body: { plid: playlist[0].pl_id } })
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("plid", playlist[0].pl_id);
+    fetch("http://localhost/mkrm/ctp.php", { method: "POST", body: urlencoded })
       .then((r) => r.json())
       .then((json) => { });
     playlist.shift();
