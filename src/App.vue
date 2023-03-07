@@ -165,7 +165,8 @@ fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gsettings.php
   .then((json) => {
     if (json[3] == "on") {
       console.log(window.location.hostname)
-      document.getElementById("qrcode").src = "http://api.qrserver.com/v1/create-qr-code/?data=" + encodeURI("https://" + window.location.hostname + "/addmusic.html") + "&size=100x100";
+      //document.getElementById("qrcode").src = "http://api.qrserver.com/v1/create-qr-code/?data=" + encodeURI("https://" + window.location.hostname + "/addmusic.html") + "&size=100x100";
+      document.getElementById("qrcode").src = "http://api.qrserver.com/v1/create-qr-code/?data=" + encodeURI("https://mkrm.pwisetthon.com/addmusic.html") + "&size=100x100";
       anime({
         targets: ".sticky",
         translateY: 250,
