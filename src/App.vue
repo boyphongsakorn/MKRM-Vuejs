@@ -24,7 +24,7 @@
 </template-->
 
 <template>
-  <img class="sticky" id="qrcode" />
+  <img class="sticky" id="qrcode" style="z-index: 1;" />
   <div class="listscreen" style="height: 100%; display: flex">
     <div style="width: 70%;height: 100vh;" id="videodisplay">
       <!--div id="ytplayer" width="100%" height="100%"></div-->
