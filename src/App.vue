@@ -217,6 +217,7 @@ function PlayerReady() {
             document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
           }
           player.playVideo();
+          player.setVolume(50);
         }, 5000)
       }
     });
