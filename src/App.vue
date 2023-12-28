@@ -134,7 +134,9 @@ export default defineComponent({
   methods: {
     onReady() {
       player = this.$refs.youtube;
-      player.setVolume(50);
+      // player.setVolume(50);
+      //make player mute
+      player.mute();
       PlayerReady();
       //player.playVideo();
     },
