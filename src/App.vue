@@ -214,6 +214,7 @@ function PlayerReady() {
           for (i = 0; i < playlist.length; i++) {
             document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
           }
+          player.playVideo();
         }, 5000)
       }
     });
