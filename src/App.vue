@@ -305,6 +305,14 @@ function getnext() {
         }, 20000);
         playlist.shift();
         clearInterval(stopnext);
+      } else {
+        //post to amq.php with body ytid: "cPNWoT__PkI" and blank gr_id
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("ytid", "cPNWoT__PkI");
+        urlencoded.append("gr_id", "");
+        fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/amq.php", { method: "POST", body: urlencoded })
+          .then((r) => r.json())
+          .then((json) => { });
       }
     });
 }
