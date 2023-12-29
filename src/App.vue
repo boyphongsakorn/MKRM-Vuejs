@@ -134,7 +134,7 @@ export default defineComponent({
   methods: {
     onReady() {
       player = this.$refs.youtube;
-      player.setVolume(75);
+      player.setVolume(85);
       PlayerReady();
       //player.playVideo();
     },
@@ -222,7 +222,7 @@ function PlayerReady() {
             document.getElementById("musiclist").innerHTML += "<tr><th scope=\"row\">" + (i + 1) + "</th><td>" + playlist[i].pl_ytname + "</td></tr>";
           }
           player.playVideo();
-          player.setVolume(75);
+          player.setVolume(85);
         }, 5000)
       }
     });
