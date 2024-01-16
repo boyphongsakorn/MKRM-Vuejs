@@ -196,12 +196,12 @@ function PlayerReady() {
       if (!playlist.length) {
         stopnext = setInterval(getnext, 5000)
         //post to amq.php with body ytid: "RrN-85lyU3k" and blank gr_id
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("ytid", "RrN-85lyU3k");
-        urlencoded.append("gr_id", "");
-        fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/amq.php", { method: "POST", body: urlencoded })
-          .then((r) => r.json())
-          .then((json) => { });
+        // var urlencoded = new URLSearchParams();
+        // urlencoded.append("ytid", "RrN-85lyU3k");
+        // urlencoded.append("gr_id", "");
+        // fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/amq.php", { method: "POST", body: urlencoded })
+        //   .then((r) => r.json())
+        //   .then((json) => { });
         toast.warning("กรุณาเพิ่มเพลงเข้าลิสต์");
       } else {
         setTimeout(function () {
