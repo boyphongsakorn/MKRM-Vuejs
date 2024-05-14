@@ -308,12 +308,12 @@ function getnext() {
         clearInterval(stopnext);
       } else {
         //post to amq.php with body ytid: "RrN-85lyU3k" and blank gr_id
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("ytid", "RrN-85lyU3k");
-        urlencoded.append("gr_id", "");
-        fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/amq.php", { method: "POST", body: urlencoded })
-          .then((r) => r.json())
-          .then((json) => { });
+        //var urlencoded = new URLSearchParams();
+        //urlencoded.append("ytid", "RrN-85lyU3k");
+        //urlencoded.append("gr_id", "");
+        //fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/amq.php", { method: "POST", body: urlencoded })
+        //  .then((r) => r.json())
+        //  .then((json) => { });
       }
     });
 }
