@@ -160,7 +160,7 @@ anime({
   easing: "easeInOutSine",
 });
 
-fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gsettings.php", { mode: "cors" })
+fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/gsettings.php", { mode: "cors" })
   .then((r) => r.json())
   .then((json) => {
     if (json[3] == "on") {
@@ -185,7 +185,7 @@ var playlist = [];
 function PlayerReady() {
   //set 4 of div index to height 100%
   document.querySelectorAll("div")[3].style.height = "100%";
-  fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gpl.php")
+  fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/gpl.php")
     .then((r) => r.json())
     .then((json) => {
       playlist = json;
@@ -208,7 +208,7 @@ function PlayerReady() {
           player.loadVideoById(playlist[0].pl_ytid)
           var urlencoded = new URLSearchParams();
           urlencoded.append("plid", playlist[0].pl_id);
-          fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
+          fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
             .then((r) => r.json())
             .then((json) => { });
           toast.success("เจอเพลงแล้ว | กำลังเริ่มเล่นเพลง");
@@ -232,7 +232,7 @@ setInterval(showdiflist, 3000);
 
 function showdiflist() {
   if (document.getElementById("playlist").style.display == "none") {
-    fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gpl.php")
+    fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/gpl.php")
       .then((r) => r.json())
       .then((json) => {
         if (json.length > playlist.length || json.length > playlist) {
@@ -275,7 +275,7 @@ function showdiflist() {
 
 function getnext() {
   toast.warning("กรุณาเพิ่มเพลงเข้าลิสต์");
-  fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gpl.php")
+  fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/gpl.php")
     .then((r) => r.json())
     .then((json) => {
       playlist = json;
@@ -295,7 +295,7 @@ function getnext() {
         }
         var urlencoded = new URLSearchParams();
         urlencoded.append("plid", playlist[0].pl_id);
-        fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
+        fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
           .then((r) => r.json())
           .then((json) => { });
         player.loadVideoById(playlist[0].pl_ytid);
@@ -319,7 +319,7 @@ function getnext() {
 }
 
 function bigtest(event) {
-  fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/gpl.php")
+  fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/gpl.php")
     .then((r) => r.json())
     .then((json) => {
       document.getElementById("musiclist").innerHTML = "";
@@ -347,7 +347,7 @@ function bigtest(event) {
     }, 20000);
     var urlencoded = new URLSearchParams();
     urlencoded.append("plid", playlist[0].pl_id);
-    fetch("https://anywhere.pwisetthon.com/https://mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
+    fetch("https://cors-fany.vercel.app/mkrm.pwisetthon.com/ctp.php", { method: "POST", body: urlencoded })
       .then((r) => r.json())
       .then((json) => { });
     playlist.shift();
